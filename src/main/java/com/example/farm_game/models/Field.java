@@ -17,17 +17,14 @@ public class Field {
     @Column
     private int timeLeft;
 
-    @Column
     @ManyToOne
     @JoinColumn(name = "field_id", nullable = false)
     private FieldType fieldType;
 
-    @Column
     @ManyToOne
     @JoinColumn(name = "crop_id", nullable = false)
     private Crop crop;
 
-    @Column
     @ManyToOne
     @JoinColumn(name = "farm_id", nullable = false)
     private Farm farm;
