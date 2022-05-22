@@ -1,5 +1,6 @@
 package com.example.farm_game.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -23,10 +24,10 @@ public class Crop {
     @Column
     private int stock;
 
-    @Column
-    private int growtime;
+    @Column(name = "Growtime")
+    private int growTime;
 
-    @JsonIgnoreProperties({"crop"})
+    @JsonIgnore
     @OneToMany(mappedBy = "crop")
     private List<Field> fields;
 
@@ -35,7 +36,7 @@ public class Crop {
         this.name = name;
         this.price = price;
         this.stock = stock;
-        this.growtime = growtime;
+        this.growTime = growtime;
         this.fields = fields;
     }
 
@@ -74,12 +75,12 @@ public class Crop {
         this.stock = stock;
     }
 
-    public int getGrowtime() {
-        return growtime;
+    public int getGrowTime() {
+        return growTime;
     }
 
-    public void setGrowtime(int growtime) {
-        this.growtime = growtime;
+    public void setGrowTime(int growTime) {
+        this.growTime = growTime;
     }
 
     public List<Field> getFields() {

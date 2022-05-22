@@ -1,5 +1,8 @@
 package com.example.farm_game.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,7 +17,7 @@ public class Field {
     @Column
     private String name;
 
-    @Column
+    @Column(name = "Timeleft")
     private int timeLeft;
 
     @ManyToOne
@@ -27,6 +30,7 @@ public class Field {
 
     @ManyToOne
     @JoinColumn(name = "farm_id", nullable = false)
+    @JsonIgnoreProperties({"ownFields"})
     private Farm farm;
 
     public Field(Long id, String name, int timeLeft, FieldType fieldType, Crop crop, Farm farm) {

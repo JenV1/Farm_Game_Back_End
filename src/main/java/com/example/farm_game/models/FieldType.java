@@ -1,13 +1,14 @@
 package com.example.farm_game.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Field Types")
+@Table(name = "Field_Types")
 public class FieldType {
 
     @Id
@@ -24,7 +25,7 @@ public class FieldType {
     @Column
     private int cost;
 
-    @JsonIgnoreProperties({"fieldtypes"})
+    @JsonIgnore
     @OneToMany(mappedBy = "fieldType")
     private List<Field> fields;
 

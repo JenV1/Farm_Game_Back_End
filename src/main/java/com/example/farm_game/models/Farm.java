@@ -23,16 +23,16 @@ public class Farm {
     @Column
     private int date;
 
-    @JsonIgnoreProperties({"farms"})
+    @JsonIgnoreProperties({"fields","farm"})
     @OneToMany(mappedBy = "farm")
-    private List<Field> fields;
+    private List<Field> ownFields;
 
     public Farm(Long id, String name, int funds, int date, List<Field> fields) {
         this.id = id;
         this.name = name;
         this.funds = funds;
         this.date = date;
-        this.fields = fields;
+        this.ownFields = fields;
     }
 
     public Farm() {
@@ -70,19 +70,19 @@ public class Farm {
         this.date = date;
     }
 
-    public List<Field> getFields() {
-        return fields;
+    public List<Field> getOwnFields() {
+        return ownFields;
     }
 
-    public void setFields(List<Field> fields) {
-        this.fields = fields;
+    public void setOwnFields(List<Field> ownFields) {
+        this.ownFields = ownFields;
     }
 
     public void addField(Field field) {
-        this.fields.add(field);
+        this.ownFields.add(field);
     }
 
     public void deleteField(int fieldId){
-        this.fields.remove(fieldId);
+        this.ownFields.remove(fieldId);
     }
 }
