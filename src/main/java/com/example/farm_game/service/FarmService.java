@@ -2,13 +2,16 @@ package com.example.farm_game.service;
 
 import com.example.farm_game.models.Farm;
 import com.example.farm_game.models.Field;
+import com.example.farm_game.models.FieldType;
 import com.example.farm_game.repositories.CropRepository;
 import com.example.farm_game.repositories.FarmRepository;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
 import java.util.List;
+
 
 @Service
 public class FarmService {
@@ -37,8 +40,17 @@ public class FarmService {
         farmRepository.save(farm);
     }
 
-//    public Field buyField(String name, Long int){
-//
-//    }
+    public Field purchaseField(Farm farm, String name, FieldType fieldType){
+        if(fieldType == null) {
+            throw new RuntimeException();
+        } else {
+            Field newField = new Field();
+            newField.setName(name);
+            newField.setFieldType(fieldType);
+            newField.setFarm(farm);
+            farm.addField(newField);
+            return newField;
+        }
+    }
 
 }
