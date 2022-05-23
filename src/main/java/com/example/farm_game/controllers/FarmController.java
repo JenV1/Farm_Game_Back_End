@@ -4,6 +4,7 @@ import com.example.farm_game.models.Farm;
 import com.example.farm_game.repositories.FarmRepository;
 import com.example.farm_game.service.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class FarmController {
 
     @GetMapping("/farms")
     public ResponseEntity<List<Farm>> getAllFarms() {
-        List<Farm> farms = farmService.getUsers();
+        List<Farm> farms = farmService.getFarm();
         return ResponseEntity.ok().body(farms);
     }
 

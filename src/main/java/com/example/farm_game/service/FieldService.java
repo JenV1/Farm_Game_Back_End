@@ -9,17 +9,20 @@ import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Service
 public class FieldService {
 
     private final FieldRepository fieldRepository;
+    private final CropRepository cropRepository;
 
     @Autowired
     public FieldService(
-            FieldRepository fieldRepository) {
+            FieldRepository fieldRepository, CropRepository cropRepository) {
         this.fieldRepository = fieldRepository;
+        this.cropRepository = cropRepository;
     }
     public List<Field> getField() {
         return fieldRepository.findAll();
@@ -35,5 +38,10 @@ public class FieldService {
 
     public void saveField(Field field) {
         fieldRepository.save(field);
+    }
+
+
+    public void putCropInField(Long fieldID, Long cropID) {
+        fieldRepository.assignCropToField(fieldID, cropID, cropRepository.getById(cropID).getGrowTime());
     }
 }

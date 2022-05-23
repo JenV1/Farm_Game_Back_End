@@ -37,4 +37,12 @@ public class CropController {
         Crop newCrop = new Crop(null, cropName, price, stock, growTime, null);
         cropService.saveCrop(newCrop);
     }
+
+//    @PutMapping
+//    public void updateCrop(@RequestParam String cropName, @RequestParam int price, @RequestParam int stock, @RequestParam int growTime {
+//
+//
+//    }
+
+
 }

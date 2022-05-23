@@ -21,7 +21,7 @@ public class FarmService {
         this.farmRepository = farmRepository;
     }
 
-    public List<Farm> getUsers() {
+    public List<Farm> getFarm() {
         return farmRepository.findAll();
     }
 

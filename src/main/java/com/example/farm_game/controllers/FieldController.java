@@ -11,27 +11,16 @@ import com.example.farm_game.service.FarmService;
 import com.example.farm_game.service.FieldService;
 import com.example.farm_game.service.FieldTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
 public class FieldController {
-
-//    public final FieldRepository fieldRepository;
-//    public final FieldTypeRepository fieldTypeRepository;
-//    public final FarmRepository farmRepository;
-//    public final CropRepository cropRepository;
-//
-//    public FieldController(FieldRepository fieldRepository, FieldTypeRepository fieldTypeRepository,
-//                           FarmRepository farmRepository, CropRepository cropRepository) {
-//        this.fieldRepository = fieldRepository;
-//        this.fieldTypeRepository = fieldTypeRepository;
-//        this.farmRepository = farmRepository;
-//        this.cropRepository = cropRepository;
-//    }
 
     public final FieldService fieldService;
     public final FieldTypeService fieldTypeService;
@@ -69,6 +58,11 @@ public class FieldController {
                     cropService.getCrop(cropID), farmService.getFarm(farmID));
             fieldService.saveField(newField);
         }
-
     }
+
+    @PatchMapping(value = "/CropInField")
+    public void putCropInField(@RequestParam Long fieldID, @RequestParam Long cropID) {
+        fieldService.putCropInField(fieldID, cropID);
+    }
+
 }
