@@ -4,10 +4,7 @@ import com.example.farm_game.models.FieldType;
 import com.example.farm_game.repositories.FieldTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,8 +31,10 @@ public class FieldTypeController {
     }
 
     @PostMapping("/fieldtypes")
-    public ResponseEntity<FieldType> createFieldType(@RequestBody FieldType fieldtype) {
-        FieldType result = fieldTypeRepository.save(fieldtype);
-        return ResponseEntity.ok().body(result);
+    public void createFieldType(@RequestParam String fieldTypeName, @RequestParam int fieldTypeSize,
+                                @RequestParam int fieldTypeCost) {
+        FieldType newFieldType = new FieldType(null, fieldTypeName, fieldTypeSize, fieldTypeCost,
+                null);
+        fieldTypeRepository.save(newFieldType);
     }
 }
