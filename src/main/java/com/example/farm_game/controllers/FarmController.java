@@ -1,8 +1,13 @@
 package com.example.farm_game.controllers;
 
 import com.example.farm_game.models.Farm;
+import com.example.farm_game.models.Field;
+import com.example.farm_game.models.FieldType;
 import com.example.farm_game.repositories.FarmRepository;
+import com.example.farm_game.service.CropService;
 import com.example.farm_game.service.FarmService;
+import com.example.farm_game.service.FieldService;
+import com.example.farm_game.service.FieldTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +18,17 @@ import java.util.Optional;
 @RestController
 public class FarmController {
 
+    public final FieldService fieldService;
+    public final FieldTypeService fieldTypeService;
     public final FarmService farmService;
+    public final CropService cropService;
 
-    public FarmController(FarmService farmService) {
+    public FarmController(FieldService fieldService, FieldTypeService fieldTypeService,
+                           FarmService farmService, CropService cropService) {
+        this.fieldService = fieldService;
+        this.fieldTypeService = fieldTypeService;
         this.farmService = farmService;
+        this.cropService = cropService;
     }
 
     @GetMapping("/farms")
@@ -35,6 +47,22 @@ public class FarmController {
     public void createFarm(@RequestParam String farmName) {
         Farm newFarm = new Farm(null, farmName, 1000, 0, null);
         farmService.saveFarm(newFarm);
+    }
+
+    @PutMapping("/farm/{idfarm}/buyfield/{idfieldtype}")
+    public ResponseEntity buyField(@RequestParam String fieldName, Long idfieldtype, Long idfarm) {
+        FieldType newFieldType = fieldTypeService.getFieldType(idfieldtype);
+        Farm farm = farmService.getFarm(idfarm);
+        if(farm.getFunds() >= newFieldType.getCost()) {
+            farm.setFunds(farm.getFunds()-newFieldType.getCost());
+            Field newField = farmService.purchaseField(farm, fieldName, newFieldType);
+            fieldService.saveField(newField);
+            farmService.saveFarm(farm);
+            return ResponseEntity.ok().body(newField);
+        }
+        else {
+            return ResponseEntity.ok().build();
+        }
     }
 
 

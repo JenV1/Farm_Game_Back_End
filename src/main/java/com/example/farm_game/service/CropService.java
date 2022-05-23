@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class CropService {
 
-    private final CropRepository cropRepository;
+    public final CropRepository cropRepository;
 
     @Autowired
     public CropService(CropRepository cropRepository) {
