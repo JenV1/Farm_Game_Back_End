@@ -15,20 +15,23 @@ public class CropService {
     private final CropRepository cropRepository;
 
     @Autowired
-    public CropService(
-            CropRepository cropRepository) {
+    public CropService(CropRepository cropRepository) {
         this.cropRepository = cropRepository;
     }
 
-    List<Crop> getCrop() {
+    public List<Crop> getCrop() {
         return (List<Crop>) cropRepository.findAll();
     }
 
-    Crop getCrop(Long id) throws NotFoundException {
+    public Crop getCrop(Long id) throws NotFoundException {
         return cropRepository
                 .findById(id)
                 .orElseThrow(
                         () -> new NotFoundException(
                                 "Crop with id " + id + " not found. Please try again."));
+    }
+
+    public void saveCrop(Crop crop) {
+        cropRepository.save(crop);
     }
 }
