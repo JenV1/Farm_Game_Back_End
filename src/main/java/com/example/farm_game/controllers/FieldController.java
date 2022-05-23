@@ -62,7 +62,14 @@ public class FieldController {
 
     @PatchMapping(value = "/CropInField")
     public void putCropInField(@RequestParam Long fieldID, @RequestParam Long cropID) {
-        fieldService.putCropInField(fieldID, cropID);
+        if (cropService.getCrop(cropID) != null && fieldService.getField(fieldID) != null) {
+            fieldService.putCropInField(fieldID, cropID);
+        }
+    }
+
+    @PatchMapping(value = "/automaticSelling")
+    public void sellReadyCropsInFields(@RequestParam Long farmID) {
+        int moneyMade = fieldService.sellReadyCropsInFields(farmID);
     }
 
 }

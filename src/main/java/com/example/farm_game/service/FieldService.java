@@ -44,4 +44,8 @@ public class FieldService {
     public void putCropInField(Long fieldID, Long cropID) {
         fieldRepository.assignCropToField(fieldID, cropID, cropRepository.getById(cropID).getGrowTime());
     }
+
+    public int sellReadyCropsInFields(Long farmID) {
+        return fieldRepository.updateMoneyUponAutomaticSelling(farmID);
+    }
 }
