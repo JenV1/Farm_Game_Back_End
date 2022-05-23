@@ -15,7 +15,6 @@ import java.util.Optional;
 @RestController
 public class CropController {
 
-    @Autowired
     public final CropRepository cropRepository;
 
     public CropController (CropRepository cropRepository) {

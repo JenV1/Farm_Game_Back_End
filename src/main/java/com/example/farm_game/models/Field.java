@@ -21,15 +21,15 @@ public class Field {
     private int timeLeft;
 
     @ManyToOne
-    @JoinColumn(name = "field_id", nullable = false)
+    @JoinColumn(name = "field_id")
     private FieldType fieldType;
 
     @ManyToOne
-    @JoinColumn(name = "crop_id", nullable = false)
+    @JoinColumn(name = "crop_id")
     private Crop crop;
 
     @ManyToOne
-    @JoinColumn(name = "farm_id", nullable = false)
+    @JoinColumn(name = "farm_id")
     @JsonIgnoreProperties({"ownFields"})
     private Farm farm;
 

@@ -15,7 +15,6 @@ import java.util.Optional;
 @RestController
 public class FieldTypeController {
 
-    @Autowired
     public final FieldTypeRepository fieldTypeRepository;
 
     public FieldTypeController(FieldTypeRepository fieldTypeRepository) {
