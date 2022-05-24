@@ -65,6 +65,9 @@ public class FarmController {
             throw new RuntimeException("Not enough funds for purchase");
         }
     }
+    @DeleteMapping("/deleteFarm/{id}")
+    public void deleteFarm(@PathVariable Long id){farmService.deleteFarm(farmService.getFarm(id));
+    }
 
     @PutMapping("/newday/{id}")
     public ResponseEntity<String> dawnDay(Long id) {
@@ -73,4 +76,5 @@ public class FarmController {
     }
 
 
-}
+
+    }

@@ -38,4 +38,7 @@ public class FieldTypeController {
                 null);
         fieldTypeService.saveFieldType(newFieldType);
     }
+    @DeleteMapping("/deleteFieldType/{id}")
+    public void deleteFieldType(@PathVariable Long id){fieldTypeService.deleteFieldType(fieldTypeService.getFieldType(id));
+    }
 }

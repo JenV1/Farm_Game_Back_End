@@ -37,7 +37,11 @@ public class FarmService {
     }
 
     public void saveFarm(Farm farm) {
+
         farmRepository.save(farm);
+    }
+    public void deleteFarm (Farm farm){
+        farmRepository.deleteById(farm.getId());
     }
 
     public Field purchaseField(Farm farm, String name, FieldType fieldType){
