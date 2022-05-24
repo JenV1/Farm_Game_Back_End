@@ -51,7 +51,7 @@ public class FarmController {
     }
 
     @PutMapping("/farm/{idfarm}/buyfield/{idfieldtype}")
-    public ResponseEntity buyField(@RequestParam String fieldName, Long idfieldtype, Long idfarm) {
+    public ResponseEntity<Field> buyField(@RequestParam String fieldName, Long idfieldtype, Long idfarm) {
         FieldType newFieldType = fieldTypeService.getFieldType(idfieldtype);
         Farm farm = farmService.getFarm(idfarm);
         if(farm.getFunds() >= newFieldType.getCost()) {
@@ -62,11 +62,24 @@ public class FarmController {
             return ResponseEntity.ok().body(newField);
         }
         else {
-            return ResponseEntity.ok().build();
+            throw new RuntimeException("Not enough funds for purchase");
         }
     }
     @DeleteMapping("/deleteFarm/{id}")
     public void deleteFarm(@PathVariable Long id){farmService.deleteFarm(farmService.getFarm(id));
+    }
+
+    @PutMapping("/newday/{id}")
+    public ResponseEntity<String> dawnDay(Long id) {
+        int moneyMade = fieldService.sellReadyCropsInFields(id);
+        farmService.updateMoneyWhenCropsSold(id, moneyMade);
+        Farm farm = farmService.getFarm(id);
+        farmService.nextDay(farm);
+        farmService.saveFarm(farm);
+        return ResponseEntity.ok().body(farm.getName() + " made " + moneyMade + " today, it's now day " + farm.getDate() + "!");
+
+
+
     }
 
 

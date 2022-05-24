@@ -85,4 +85,8 @@ public class Farm {
     public void deleteField(int fieldId){
         this.ownFields.remove(fieldId);
     }
+
+    public void incrementDay() {
+        this.date++;
+    }
 }

@@ -69,9 +69,12 @@ public class FieldController {
     }
 
     @PatchMapping(value = "/automaticSelling/{farmID}")
-    public void sellReadyCropsInFields(@PathVariable Long farmID) {
+    public int sellReadyCropsInFields(@PathVariable Long farmID) {
         int moneyMade = fieldService.sellReadyCropsInFields(farmID);
+        farmService.updateMoneyWhenCropsSold(farmID, moneyMade);
+        return moneyMade;
     }
+
     @DeleteMapping("/deleteField/{id}")
     public void deleteField(@PathVariable Long id){fieldService.deleteField(fieldService.getField(id));
     }

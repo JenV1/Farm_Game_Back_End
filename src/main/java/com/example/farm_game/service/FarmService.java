@@ -37,9 +37,9 @@ public class FarmService {
     }
 
     public void saveFarm(Farm farm) {
-
         farmRepository.save(farm);
     }
+
     public void deleteFarm (Farm farm){
         farmRepository.deleteById(farm.getId());
     }
@@ -57,5 +57,16 @@ public class FarmService {
         }
     }
 
+    public void updateMoneyWhenCropsSold(Long farmID, int moneyMade) {
+        farmRepository.updateMoneyWhenFieldsCleared(moneyMade, farmID);
+    }
+
+    public void updateMoneyWhenCropBought(Long farmID, int cropPrice) {
+        farmRepository.takeMoneyOffWhenCropPurchased(farmID, cropPrice);
+    }
+
+    public void nextDay(Farm farm){
+        farm.incrementDay();
+    }
 
 }
