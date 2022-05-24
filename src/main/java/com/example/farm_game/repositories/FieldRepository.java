@@ -20,7 +20,7 @@ public interface FieldRepository extends JpaRepository<Field,Long> {
                            @Param("NEW_TIME") int newTime);
 
     @Query(value = "WITH MONEY_BACK_FROM_FIELD AS ( "
-            + "SELECT 2*CROPS.PRICE*FIELD_TYPES.SIZE AS MONEY "
+            + "SELECT CROPS.SELLPRICE*FIELD_TYPES.SIZE AS MONEY "
             + "FROM FIELDS INNER JOIN CROPS "
             + "ON CROPS.ID = FIELDS.CROP_ID "
             + "INNER JOIN FIELD_TYPES "

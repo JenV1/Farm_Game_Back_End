@@ -14,6 +14,6 @@ class FieldRepositoryTest {
 
     @Test
     void updateMoneyUponAutomaticSelling() {
-        assertEquals(840, fieldRepository.updateMoneyUponAutomaticSelling(4l));
+        assertEquals(1130, fieldRepository.updateMoneyUponAutomaticSelling(4l));
     }
 }
