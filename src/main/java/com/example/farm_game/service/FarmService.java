@@ -61,5 +61,9 @@ public class FarmService {
         farmRepository.updateMoneyWhenFieldsCleared(moneyMade, farmID);
     }
 
+    public void nextDay(Farm farm, int moneyEarnt){
+        farm.incrementDay();
+        farm.setFunds(farm.getFunds()+moneyEarnt);
+    }
 
 }
