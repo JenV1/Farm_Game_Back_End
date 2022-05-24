@@ -37,9 +37,9 @@ public class FarmService {
     }
 
     public void saveFarm(Farm farm) {
-
         farmRepository.save(farm);
     }
+
     public void deleteFarm (Farm farm){
         farmRepository.deleteById(farm.getId());
     }
@@ -55,6 +55,10 @@ public class FarmService {
             farm.addField(newField);
             return newField;
         }
+    }
+
+    public void updateMoneyWhenCropsSold(Long farmID, int moneyMade) {
+        farmRepository.updateMoneyWhenFieldsCleared(moneyMade, farmID);
     }
 
 
