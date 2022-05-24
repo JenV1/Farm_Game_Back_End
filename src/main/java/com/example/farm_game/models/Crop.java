@@ -27,17 +27,22 @@ public class Crop {
     @Column(name = "Growtime")
     private int growTime;
 
+    @Column(name = "SELLPRICE")
+    private int sellPrice;
+
     @JsonIgnore
     @OneToMany(mappedBy = "crop")
     private List<Field> fields;
 
-    public Crop(Long id, String name, int price, int stock, int growtime, List<Field> fields) {
+    public Crop(Long id, String name, int price, int stock, int growtime, List<Field> fields,
+                int sellPrice) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
         this.growTime = growtime;
         this.fields = fields;
+        this.sellPrice = sellPrice;
     }
 
     public Crop() {

@@ -35,8 +35,8 @@ public class CropController {
 
     @PostMapping("/crops")
     public void createCrop(@RequestParam String cropName, @RequestParam int price, @RequestParam int stock,
-                           @RequestParam int growTime) {
-        Crop newCrop = new Crop(null, cropName, price, stock, growTime, null);
+                           @RequestParam int growTime, @RequestParam int sellPrice) {
+        Crop newCrop = new Crop(null, cropName, price, stock, growTime, null, sellPrice);
         cropService.saveCrop(newCrop);
     }
 
