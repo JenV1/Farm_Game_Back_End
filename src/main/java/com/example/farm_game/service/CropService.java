@@ -39,4 +39,7 @@ public class CropService {
     public void deleteCrop(Crop crop) {
         cropRepository.deleteById(crop.getId());
     }
+    public void dataSqlLoadsCrops(Crop crop){
+        cropRepository.findAll();
+    }
 }
