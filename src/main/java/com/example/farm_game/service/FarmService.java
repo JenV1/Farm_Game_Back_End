@@ -65,9 +65,8 @@ public class FarmService {
         farmRepository.takeMoneyOffWhenCropPurchased(farmID, cropPrice);
     }
 
-    public void nextDay(Farm farm, int moneyEarnt){
+    public void nextDay(Farm farm){
         farm.incrementDay();
-        farm.setFunds(farm.getFunds()+moneyEarnt);
     }
 
 }

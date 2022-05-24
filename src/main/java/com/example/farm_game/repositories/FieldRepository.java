@@ -28,7 +28,7 @@ public interface FieldRepository extends JpaRepository<Field,Long> {
             + "WHERE FIELDS.FARM_ID = :FARM_ID "
             + "AND FIELDS.TIMELEFT = 0 AND FIELDS.CROP_ID IS NOT NULL) " +
             "SELECT SUM(MONEY) FROM MONEY_BACK_FROM_FIELD", nativeQuery = true)
-    int updateMoneyUponAutomaticSelling(@Param("FARM_ID") Long farmID);
+    Integer updateMoneyUponAutomaticSelling(@Param("FARM_ID") Long farmID);
 
     @Modifying
     @Query(value = "UPDATE FIELDS SET CROP_ID = NULL WHERE FARM_ID = :FARM_ID AND TIMELEFT=0", nativeQuery = true)
