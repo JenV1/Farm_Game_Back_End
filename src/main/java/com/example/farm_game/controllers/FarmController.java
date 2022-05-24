@@ -78,10 +78,6 @@ public class FarmController {
         farmService.saveFarm(farm);
         return ResponseEntity.ok().body(farm.getName() + " made " + moneyMade + " today, it's now day " + farm.getDate() + "!");
 
-
-
     }
 
-
-
-    }
+}
