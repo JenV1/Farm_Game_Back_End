@@ -1,5 +1,6 @@
 package com.example.farm_game.service;
 
+import com.example.farm_game.models.Farm;
 import com.example.farm_game.models.Field;
 import com.example.farm_game.models.FieldType;
 import com.example.farm_game.repositories.CropRepository;
@@ -38,6 +39,9 @@ public class FieldService {
 
     public void saveField(Field field) {
         fieldRepository.save(field);
+    }
+    public void deleteField (Field field){
+        fieldRepository.deleteById(field.getId());
     }
 
 
