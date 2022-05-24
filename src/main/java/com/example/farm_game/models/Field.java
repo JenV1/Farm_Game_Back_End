@@ -1,7 +1,7 @@
 package com.example.farm_game.models;
 
+import com.example.farm_game.enums.SoilTypes;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import javax.persistence.*;
 
@@ -20,6 +20,9 @@ public class Field {
     @Column(name = "Timeleft")
     private int timeLeft;
 
+    @Column(name = "Soiltype")
+    private SoilTypes soilType;
+
     @ManyToOne
     @JoinColumn(name = "field_id")
     private FieldType fieldType;
@@ -33,10 +36,11 @@ public class Field {
     @JsonIgnoreProperties({"ownFields"})
     private Farm farm;
 
-    public Field(Long id, String name, int timeLeft, FieldType fieldType, Crop crop, Farm farm) {
+    public Field(Long id, String name, int timeLeft, SoilTypes soilType, FieldType fieldType, Crop crop, Farm farm) {
         this.id = id;
         this.name = name;
         this.timeLeft = timeLeft;
+        this.soilType = soilType;
         this.fieldType = fieldType;
         this.crop = crop;
         this.farm = farm;
@@ -91,5 +95,13 @@ public class Field {
 
     public void setFarm(Farm farm) {
         this.farm = farm;
+    }
+
+    public SoilTypes getSoilType() {
+        return soilType;
+    }
+
+    public void setSoilType(SoilTypes soilType) {
+        this.soilType = soilType;
     }
 }

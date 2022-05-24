@@ -1,5 +1,7 @@
 package com.example.farm_game.models;
 
+import com.example.farm_game.enums.SoilEffects;
+import com.example.farm_game.enums.SoilTypes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,6 +26,16 @@ public class Crop {
     @Column
     private int stock;
 
+    @Column
+    @Enumerated
+    @ElementCollection(targetClass = SoilTypes.class)
+    private List<SoilTypes> soilTypes;
+
+    @Column
+    @Enumerated
+    @ElementCollection(targetClass = SoilEffects.class)
+    private List<SoilEffects> soilEffects;
+
     @Column(name = "Growtime")
     private int growTime;
 
@@ -31,12 +43,14 @@ public class Crop {
     @OneToMany(mappedBy = "crop")
     private List<Field> fields;
 
-    public Crop(Long id, String name, int price, int stock, int growtime, List<Field> fields) {
+    public Crop(Long id, String name, int price, int stock, int growtime, List<SoilTypes> soilTypes, List<SoilEffects> soilEffects, List<Field> fields) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
         this.growTime = growtime;
+        this.soilTypes = soilTypes;
+        this.soilEffects = soilEffects;
         this.fields = fields;
     }
 
@@ -81,6 +95,22 @@ public class Crop {
 
     public void setGrowTime(int growTime) {
         this.growTime = growTime;
+    }
+
+    public List<SoilTypes> getSoilTypes() {
+        return soilTypes;
+    }
+
+    public void setSoilTypes(List<SoilTypes> soilTypes) {
+        this.soilTypes = soilTypes;
+    }
+
+    public List<SoilEffects> getSoilEffects() {
+        return soilEffects;
+    }
+
+    public void setSoilEffects(List<SoilEffects> soilEffects) {
+        this.soilEffects = soilEffects;
     }
 
     public List<Field> getFields() {
