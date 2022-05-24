@@ -38,6 +38,11 @@ public class CropController {
         cropService.saveCrop(newCrop);
     }
 
+    @DeleteMapping("/deleteCrop/{id}")
+    public void deleteCrop(@PathVariable Long id){cropService.deleteCrop(cropService.getCrop(id));
+    }
+
+
 //    @PutMapping
 //    public void updateCrop(@RequestParam String cropName, @RequestParam int price, @RequestParam int stock, @RequestParam int growTime {
 //

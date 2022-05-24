@@ -32,6 +32,11 @@ public class CropService {
     }
 
     public void saveCrop(Crop crop) {
+
         cropRepository.save(crop);
+    }
+
+    public void deleteCrop(Crop crop) {
+        cropRepository.deleteById(crop.getId());
     }
 }

@@ -72,5 +72,8 @@ public class FieldController {
     public void sellReadyCropsInFields(@PathVariable Long farmID) {
         int moneyMade = fieldService.sellReadyCropsInFields(farmID);
     }
+    @DeleteMapping("/deleteField/{id}")
+    public void deleteField(@PathVariable Long id){fieldService.deleteField(fieldService.getField(id));
+    }
 
 }

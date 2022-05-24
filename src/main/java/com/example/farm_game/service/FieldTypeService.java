@@ -37,5 +37,8 @@ public class FieldTypeService {
     public void saveFieldType(FieldType fieldType) {
         fieldTypeRepository.save(fieldType);
     }
+    public void deleteFieldType (FieldType fieldType){
+        fieldTypeRepository.deleteById(fieldType.getId());
+    }
 
 }
