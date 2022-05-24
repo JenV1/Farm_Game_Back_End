@@ -2105,3 +2105,9 @@ WITH MONEY_BACK_FROM_FIELD AS ( SELECT 2*CROPS.PRICE*FIELD_TYPES.SIZE AS MONEY F
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-05-24 08:53:19 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE FIELDS SET CROP_ID = NULL WHERE FARM_ID = [*]:FARM_ID AND TIMELEFT=0"; expected "ALL, ANY, SOME"; SQL statement:
+UPDATE FIELDS SET CROP_ID = NULL WHERE FARM_ID = :FARM_ID AND TIMELEFT=0 [42001-212]
+2022-05-24 08:53:48 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE FIELDS CROP_ID [*]= NULL WHERE FARM_ID = :FARM_ID AND TIMELEFT=0"; expected "SET"; SQL statement:
+UPDATE FIELDS CROP_ID = NULL WHERE FARM_ID = :FARM_ID AND TIMELEFT=0 [42001-212]

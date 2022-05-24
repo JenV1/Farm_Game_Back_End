@@ -46,6 +46,8 @@ public class FieldService {
     }
 
     public int sellReadyCropsInFields(Long farmID) {
-        return fieldRepository.updateMoneyUponAutomaticSelling(farmID);
+        int moneyMade = fieldRepository.updateMoneyUponAutomaticSelling(farmID);
+        fieldRepository.emptyFields(farmID);
+        return moneyMade;
     }
 }

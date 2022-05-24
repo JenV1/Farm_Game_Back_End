@@ -11,6 +11,7 @@ import com.example.farm_game.service.FarmService;
 import com.example.farm_game.service.FieldService;
 import com.example.farm_game.service.FieldTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,8 +68,8 @@ public class FieldController {
         }
     }
 
-    @PatchMapping(value = "/automaticSelling")
-    public void sellReadyCropsInFields(@RequestParam Long farmID) {
+    @PatchMapping(value = "/automaticSelling/{farmID}")
+    public void sellReadyCropsInFields(@PathVariable Long farmID) {
         int moneyMade = fieldService.sellReadyCropsInFields(farmID);
     }
 
