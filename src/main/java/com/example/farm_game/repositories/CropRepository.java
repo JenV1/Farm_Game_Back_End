@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 public interface CropRepository extends JpaRepository<Crop,Long> {
 
     @Modifying
-    @Query(value = "UPDATE CROPS SET STOCK = STOCK - 1 WHERE CROPS.ID = :CROP_ID", nativeQuery = true)
+    @Query(value = "UPDATE CROPS SET STOCK = STOCK - :FIELD_SIZE WHERE CROPS.ID = :CROP_ID", nativeQuery = true)
     @Transactional
-    public void reduceStockByOne(@Param("CROP_ID") Long cropID);
+    public void reduceStockByFieldSize(@Param("CROP_ID") Long cropID, @Param("FIELD_SIZE") int fieldSize);
 }

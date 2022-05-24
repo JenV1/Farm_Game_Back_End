@@ -1,8 +1,6 @@
 package com.example.farm_game.service;
 
-import com.example.farm_game.models.Farm;
 import com.example.farm_game.models.Field;
-import com.example.farm_game.models.FieldType;
 import com.example.farm_game.repositories.CropRepository;
 import com.example.farm_game.repositories.FarmRepository;
 import com.example.farm_game.repositories.FieldRepository;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
 import java.util.List;
-import java.util.Map;
 
 
 @Service
@@ -59,7 +56,8 @@ public class FieldService {
         cropRepository.getById(cropID).getPrice()<=farmMoney) {
             fieldRepository.assignCropToField(fieldID, cropID, cropRepository.getById(cropID).getGrowTime());
             farmService.updateMoneyWhenCropBought(farmID, cropRepository.getById(cropID).getPrice());
-            cropRepository.reduceStockByOne(cropID);
+            int fieldSize = fieldRepository.getById(fieldID).getFieldType().getSize();
+            cropRepository.reduceStockByFieldSize(cropID, fieldSize);
         }
 
     }
