@@ -1,14 +1,12 @@
 package com.example.farm_game.controllers;
 
+import com.example.farm_game.enums.SoilTypes;
 import com.example.farm_game.models.FieldType;
-import com.example.farm_game.repositories.FieldTypeRepository;
 import com.example.farm_game.service.FieldTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class FieldTypeController {
@@ -33,8 +31,8 @@ public class FieldTypeController {
 
     @PostMapping("/fieldtypes")
     public void createFieldType(@RequestParam String fieldTypeName, @RequestParam int fieldTypeSize,
-                                @RequestParam int fieldTypeCost) {
-        FieldType newFieldType = new FieldType(null, fieldTypeName, fieldTypeSize, fieldTypeCost,
+                                @RequestParam int fieldTypeCost, @RequestParam(required = false) SoilTypes soilType) {
+        FieldType newFieldType = new FieldType(null, fieldTypeName, fieldTypeSize, fieldTypeCost, soilType,
                 null);
         fieldTypeService.saveFieldType(newFieldType);
     }

@@ -1,8 +1,8 @@
 package com.example.farm_game.models;
 
 
+import com.example.farm_game.enums.SoilTypes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,15 +25,19 @@ public class FieldType {
     @Column
     private int cost;
 
+    @Column(name = "Soiltype")
+    private SoilTypes soilType;
+
     @JsonIgnore
     @OneToMany(mappedBy = "fieldType")
     private List<Field> fields;
 
-    public FieldType(Long id, String name, int size, int cost, List<Field> fields) {
+    public FieldType(Long id, String name, int size, int cost, SoilTypes soilType, List<Field> fields) {
         this.id = id;
         this.name = name;
         this.size = size;
         this.cost = cost;
+        this.soilType = soilType;
         this.fields = fields;
     }
 
@@ -70,6 +74,14 @@ public class FieldType {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    public SoilTypes getSoilType() {
+        return soilType;
+    }
+
+    public void setSoilType(SoilTypes soilType) {
+        this.soilType = soilType;
     }
 
     public List<Field> getFields() {

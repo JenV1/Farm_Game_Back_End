@@ -1,16 +1,16 @@
 package com.example.farm_game.service;
 
+import com.example.farm_game.enums.SoilTypes;
 import com.example.farm_game.models.Farm;
 import com.example.farm_game.models.Field;
 import com.example.farm_game.models.FieldType;
-import com.example.farm_game.repositories.CropRepository;
 import com.example.farm_game.repositories.FarmRepository;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
 import java.util.List;
+import java.util.Random;
 
 
 @Service
@@ -52,6 +52,11 @@ public class FarmService {
             newField.setName(name);
             newField.setFieldType(fieldType);
             newField.setFarm(farm);
+            if (fieldType.getSoilType() == null) {
+                newField.setSoilType(SoilTypes.values()[new Random().nextInt(SoilTypes.values().length)]);
+            } else {
+                newField.setSoilType(fieldType.getSoilType());
+            }
             farm.addField(newField);
             return newField;
         }

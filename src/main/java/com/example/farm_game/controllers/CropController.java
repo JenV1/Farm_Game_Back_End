@@ -1,5 +1,7 @@
 package com.example.farm_game.controllers;
 
+import com.example.farm_game.enums.SoilEffects;
+import com.example.farm_game.enums.SoilTypes;
 import com.example.farm_game.models.Crop;
 import com.example.farm_game.repositories.CropRepository;
 import com.example.farm_game.service.CropService;
@@ -37,6 +39,8 @@ public class CropController {
     public void createCrop(@RequestParam String cropName, @RequestParam int price, @RequestParam int stock,
                            @RequestParam int growTime, @RequestParam int sellPrice) {
         Crop newCrop = new Crop(null, cropName, price, stock, growTime, null, sellPrice);
+                           @RequestParam int growTime, @RequestParam(required = false) List<SoilTypes> soilTypes, @RequestParam(required = false) List<SoilEffects> soilEffects) {
+        Crop newCrop = new Crop(null, cropName, price, stock, growTime, soilTypes, soilEffects, null);
         cropService.saveCrop(newCrop);
     }
 
