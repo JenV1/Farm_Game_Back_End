@@ -17,4 +17,10 @@ public interface FarmRepository extends JpaRepository<Farm,Long> {
     @Transactional
     public void updateMoneyWhenFieldsCleared(@Param("MONEY_MADE") int moneyMade,
                                              @Param("FARM_ID") Long farmID);
+
+    @Modifying
+    @Query(value = "UPDATE FARMS SET FUNDS = FUNDS - :CROP_PRICE WHERE ID = :FARM_ID", nativeQuery = true)
+    @Transactional
+    public void takeMoneyOffWhenCropPurchased(@Param("FARM_ID") Long farmID,
+                                              @Param("CROP_PRICE") int cropPrice);
 }

@@ -61,6 +61,10 @@ public class FarmService {
         farmRepository.updateMoneyWhenFieldsCleared(moneyMade, farmID);
     }
 
+    public void updateMoneyWhenCropBought(Long farmID, int cropPrice) {
+        farmRepository.takeMoneyOffWhenCropPurchased(farmID, cropPrice);
+    }
+
     public void nextDay(Farm farm, int moneyEarnt){
         farm.incrementDay();
         farm.setFunds(farm.getFunds()+moneyEarnt);
