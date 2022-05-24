@@ -51,7 +51,7 @@ public class FarmController {
     }
 
     @PutMapping("/farm/{idfarm}/buyfield/{idfieldtype}")
-    public ResponseEntity buyField(@RequestParam String fieldName, Long idfieldtype, Long idfarm) {
+    public ResponseEntity<Field> buyField(@RequestParam String fieldName, Long idfieldtype, Long idfarm) {
         FieldType newFieldType = fieldTypeService.getFieldType(idfieldtype);
         Farm farm = farmService.getFarm(idfarm);
         if(farm.getFunds() >= newFieldType.getCost()) {
@@ -62,8 +62,14 @@ public class FarmController {
             return ResponseEntity.ok().body(newField);
         }
         else {
-            return ResponseEntity.ok().build();
+            throw new RuntimeException("Not enough funds for purchase");
         }
+    }
+
+    @PutMapping("/newday/{id}")
+    public ResponseEntity<String> dawnDay(Long id) {
+        Farm farm = farmService.getFarm(id);
+
     }
 
 

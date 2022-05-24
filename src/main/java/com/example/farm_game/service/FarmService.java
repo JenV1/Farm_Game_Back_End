@@ -53,4 +53,9 @@ public class FarmService {
         }
     }
 
+    public void nextDay(Farm farm, int moneyEarnt){
+        farm.incrementDay();
+        farm.setFunds(farm.getFunds()+moneyEarnt);
+    }
+
 }
