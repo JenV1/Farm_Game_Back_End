@@ -65,6 +65,10 @@ public class FarmController {
             return ResponseEntity.ok().build();
         }
     }
+    @DeleteMapping("/deleteFarm/{id}")
+    public void deleteFarm(@PathVariable Long id){farmService.deleteFarm(farmService.getFarm(id));
+    }
 
 
-}
+
+    }
