@@ -46,9 +46,9 @@ public class Crop {
     @OneToMany(mappedBy = "crop")
     private List<Field> fields;
 
-    public Crop(Long id, String name, int price, int stock, int growtime, List<Field> fields,
-                int sellPrice) {
-    public Crop(Long id, String name, int price, int stock, int growtime, List<SoilTypes> soilTypes, List<SoilEffects> soilEffects, List<Field> fields) {
+
+    public Crop(Long id, String name, int price, int stock, int growtime, int sellPrice,
+        List<SoilTypes> soilTypes, List<SoilEffects> soilEffects, List<Field> fields) {
         this.id = id;
         this.name = name;
         this.price = price;

@@ -37,10 +37,10 @@ public class CropController {
 
     @PostMapping("/crops")
     public void createCrop(@RequestParam String cropName, @RequestParam int price, @RequestParam int stock,
-                           @RequestParam int growTime, @RequestParam int sellPrice) {
-        Crop newCrop = new Crop(null, cropName, price, stock, growTime, null, sellPrice);
-                           @RequestParam int growTime, @RequestParam(required = false) List<SoilTypes> soilTypes, @RequestParam(required = false) List<SoilEffects> soilEffects) {
-        Crop newCrop = new Crop(null, cropName, price, stock, growTime, soilTypes, soilEffects, null);
+                           @RequestParam int growTime, @RequestParam int sellPrice,
+                           @RequestParam(required = false) List<SoilTypes> soilTypes,
+                           @RequestParam(required = false) List<SoilEffects> soilEffects) {
+        Crop newCrop = new Crop(null, cropName, price, stock, growTime, sellPrice, soilTypes, soilEffects, null);
         cropService.saveCrop(newCrop);
     }
 
