@@ -2,8 +2,11 @@ package com.example.farm_game.models;
 
 import com.example.farm_game.enums.SoilEffects;
 import com.example.farm_game.enums.SoilTypes;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 
 import javax.persistence.*;
 import java.util.List;
