@@ -1,5 +1,6 @@
 package com.example.farm_game.controllers;
 
+import com.example.farm_game.exception.ApiRequestException;
 import com.example.farm_game.models.Farm;
 import com.example.farm_game.models.Field;
 import com.example.farm_game.models.FieldType;
@@ -62,7 +63,7 @@ public class FarmController {
             return ResponseEntity.ok().body(newField);
         }
         else {
-            throw new RuntimeException("Not enough funds for purchase");
+            throw new ApiRequestException("Not enough funds for purchase");
         }
     }
     @DeleteMapping("/deleteFarm/{id}")
