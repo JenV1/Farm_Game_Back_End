@@ -70,4 +70,6 @@ public class FieldController {
     public void deleteField(@PathVariable Long id){fieldService.deleteField(fieldService.getField(id));
     }
 
+
+
 }

@@ -81,4 +81,12 @@ public class FieldService {
             return moneyOut;
         }
     }
+
+    public void clearFieldManually(Long fieldID, Long farmID){
+
+
+
+    }
+
+
 }
