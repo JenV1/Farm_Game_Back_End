@@ -67,6 +67,7 @@ public class FarmService {
 
     public void nextDay(Farm farm){
         farm.incrementDay();
+        farm.getOwnFields().stream().filter(f -> f.getTimeLeft() != 0).forEach(f -> f.setTimeLeft(f.getTimeLeft()-1));
     }
 
 }

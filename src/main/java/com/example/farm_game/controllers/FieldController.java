@@ -79,4 +79,7 @@ public class FieldController {
     public void deleteField(@PathVariable Long id){fieldService.deleteField(fieldService.getField(id));
     }
 
+    @PutMapping
+    public void clearField(@RequestParam Long fieldID, )
+
 }

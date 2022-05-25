@@ -31,6 +31,7 @@ public class FieldService {
         this.farmService = farmService;
         this.farmRepository = farmRepository;
     }
+
     public List<Field> getField() {
         return fieldRepository.findAll();
     }
@@ -74,4 +75,12 @@ public class FieldService {
             return moneyOut;
         }
     }
+
+    public void clearFieldManually(Long fieldID, Long farmID){
+
+
+
+    }
+
+
 }
