@@ -71,7 +71,17 @@ public class FieldService {
     }
 
     public int sellReadyCropsInFields(Long farmID) {
-        Integer moneyMade = fieldRepository.updateMoneyUponAutomaticSelling(farmID);
+//        Integer moneyMade = fieldRepository.updateMoneyUponAutomaticSelling(farmID);
+        Integer moneyMade = 0;
+        if (fieldRepository.doubleYieldTotals(farmID) != null) {
+            moneyMade = fieldRepository.doubleYieldTotals(farmID);
+        }
+        if (fieldRepository.halfYieldTotals(farmID) != null) {
+            moneyMade += fieldRepository.halfYieldTotals(farmID);
+        }
+        if (fieldRepository.normalYieldTotals(farmID) != null) {
+            moneyMade += fieldRepository.normalYieldTotals(farmID);
+        }
         fieldRepository.emptyFields(farmID);
         if (moneyMade != null){
             int moneyOut = moneyMade;
