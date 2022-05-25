@@ -1,8 +1,8 @@
 package com.example.farm_game.service;
 
-import com.example.farm_game.models.Farm;
+import com.example.farm_game.enums.SoilEffects;
+import com.example.farm_game.models.Crop;
 import com.example.farm_game.models.Field;
-import com.example.farm_game.models.FieldType;
 import com.example.farm_game.repositories.CropRepository;
 import com.example.farm_game.repositories.FarmRepository;
 import com.example.farm_game.repositories.FieldRepository;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
 import java.util.List;
-import java.util.Map;
 
 
 @Service
@@ -53,13 +52,20 @@ public class FieldService {
 
 
     public void putCropInField(Long fieldID, Long cropID) {
-        Long farmID = fieldRepository.getById(fieldID).getFarm().getId();
-        int farmMoney = farmRepository.getById(farmID).getFunds();
-        if (cropRepository.getById(cropID).getStock()>=0 &&
-        cropRepository.getById(cropID).getPrice()<=farmMoney) {
-            fieldRepository.assignCropToField(fieldID, cropID, cropRepository.getById(cropID).getGrowTime());
-            farmService.updateMoneyWhenCropBought(farmID, cropRepository.getById(cropID).getPrice());
-            cropRepository.reduceStockByOne(cropID);
+        Long farmID = fieldRepository.getReferenceById(fieldID).getFarm().getId();
+        int farmMoney = farmRepository.getReferenceById(farmID).getFunds();
+        Crop crop = cropRepository.getReferenceById(cropID);
+        Field field = fieldRepository.getReferenceById(fieldID);
+        int growthMult = 1;
+        if (crop.getSoilTypes().contains(field.getSoilType()) && crop.getSoilEffects().contains(SoilEffects.TWICEGROW)) {
+            growthMult *= 0.5;
+        }
+        if (crop.getStock()>=0 && crop.getPrice()<=farmMoney && !crop.getSoilEffects().contains(SoilEffects.NOGROWWITHOUT)
+                || crop.getSoilTypes().contains(field.getSoilType())) {
+            fieldRepository.assignCropToField(fieldID, cropID, Math.round(crop.getGrowTime() * growthMult));
+            farmService.updateMoneyWhenCropBought(farmID, crop.getPrice());
+            int fieldSize = fieldRepository.getReferenceById(fieldID).getFieldType().getSize();
+            cropRepository.reduceStockByFieldSize(cropID, fieldSize);
         }
 
     }

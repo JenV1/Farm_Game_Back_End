@@ -1,5 +1,6 @@
 package com.example.farm_game.controllers;
 
+import com.example.farm_game.exception.ApiRequestException;
 import com.example.farm_game.models.Farm;
 import com.example.farm_game.models.Field;
 import com.example.farm_game.models.FieldType;
@@ -62,7 +63,7 @@ public class FarmController {
             return ResponseEntity.ok().body(newField);
         }
         else {
-            throw new RuntimeException("Not enough funds for purchase");
+            throw new ApiRequestException("Not enough funds for purchase");
         }
     }
     @DeleteMapping("/deleteFarm/{id}")
@@ -71,11 +72,11 @@ public class FarmController {
 
     @PutMapping("/newday/{id}")
     public ResponseEntity<String> dawnDay(Long id) {
-        int moneyMade = fieldService.sellReadyCropsInFields(id);
-        farmService.updateMoneyWhenCropsSold(id, moneyMade);
         Farm farm = farmService.getFarm(id);
         farmService.nextDay(farm);
         farmService.saveFarm(farm);
+        int moneyMade = fieldService.sellReadyCropsInFields(id);
+        farmService.updateMoneyWhenCropsSold(id, moneyMade);
         return ResponseEntity.ok().body(farm.getName() + " made " + moneyMade + " today, it's now day " + farm.getDate() + "!");
 
     }

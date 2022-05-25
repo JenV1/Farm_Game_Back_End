@@ -1,24 +1,15 @@
 package com.example.farm_game.controllers;
 
-import com.example.farm_game.models.Crop;
+import com.example.farm_game.enums.SoilTypes;
 import com.example.farm_game.models.Field;
-import com.example.farm_game.repositories.CropRepository;
-import com.example.farm_game.repositories.FarmRepository;
-import com.example.farm_game.repositories.FieldRepository;
-import com.example.farm_game.repositories.FieldTypeRepository;
 import com.example.farm_game.service.CropService;
 import com.example.farm_game.service.FarmService;
 import com.example.farm_game.service.FieldService;
 import com.example.farm_game.service.FieldTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
 public class FieldController {
@@ -50,11 +41,11 @@ public class FieldController {
 
     @PostMapping("/fields")
     public void createField(@RequestParam String fieldName, @RequestParam int size,
-                                             @RequestParam int cost, @RequestParam Long farmID,
+                            @RequestParam int cost, @RequestParam SoilTypes soilType, @RequestParam Long farmID,
                             @RequestParam Long fieldTypeID, @RequestParam Long cropID) {
         if (cropService.getCrop(cropID) != null && fieldTypeService.getFieldType(fieldTypeID) != null
         && farmService.getFarm(farmID) != null) {
-            Field newField = new Field(null, fieldName, cropService.getCrop(cropID).getGrowTime(),
+            Field newField = new Field(null, fieldName, cropService.getCrop(cropID).getGrowTime(), soilType,
                     fieldTypeService.getFieldType(fieldTypeID),
                     cropService.getCrop(cropID), farmService.getFarm(farmID));
             fieldService.saveField(newField);
