@@ -44,7 +44,7 @@ public interface FieldRepository extends JpaRepository<Field,Long> {
             "\n" +
             "STANDARD_YIELD AS (SELECT * FROM NO_DUPLICATE WHERE (SOIL_TYPES IS NULL AND MAX IS NULL)" +
             " OR (MAX IN (0,1,2) OR MAX IS NULL) AND NOT (MAX = 2 AND SOIL_TYPES IS NULL) " +
-            "OR (MAX = MIN AND SOIL_TYPES IS NULL))";
+            "OR (MAX = MIN AND MAX = 3 AND SOIL_TYPES IS NULL))";
 
     @Query(value = tablesToFindTotal
             + " SELECT SUM(PRICE*SIZE*2) FROM DOUBLE_YIELDS WHERE FARM = :FARM_ID", nativeQuery = true)
