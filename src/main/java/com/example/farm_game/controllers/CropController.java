@@ -8,6 +8,7 @@ import com.example.farm_game.service.CropService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.webjars.NotFoundException;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -56,7 +57,7 @@ public class CropController {
                            @RequestParam(required = false) int stock,
                            @RequestParam(required = false) int growTime){
         Crop crop = cropService.cropRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("A crop with ID " + id + " does not exist"));
+                .orElseThrow(() -> new NotFoundException("A crop with ID " + id + " is not found. Please try again."));
         if(name != null){
             crop.setName(name);
             crop.setPrice(price);
