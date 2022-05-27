@@ -9,7 +9,7 @@ Our application is a farm game where the user can play around with funtionality 
 Farm - The user can create and name a farm which will automatically have funds of £1000. Here they can fill it with fields.
 <br/>
 
-Field - Within the farm, the user can purchase many fields which must be given a name and a fieldtype. 
+Field - Within the farm, the user can purchase many fields which must be given a name and a fieldtype. If the fieldtype selected is already associated with a soil type, then the field is assigned that soil type, otherwise the field gets a soil type assigned randomly.
 <br/>
 
 Fieldtype - Each fieldtype will have a cost and size.
