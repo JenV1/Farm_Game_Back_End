@@ -63,7 +63,7 @@ public class FieldService {
         if (crop.getStock()>=0 && crop.getPrice()<=farmMoney && !crop.getSoilEffects().contains(SoilEffects.NOGROWWITHOUT)
                 || crop.getSoilTypes().contains(field.getSoilType())) {
             fieldRepository.assignCropToField(fieldID, cropID, Math.round(crop.getGrowTime() / growthMult));
-            farmService.updateMoneyWhenCropBought(farmID, crop.getPrice());
+            farmService.updateMoneyWhenCropBought(farmID, crop.getPrice()*field.getFieldType().getSize());
             int fieldSize = fieldRepository.getReferenceById(fieldID).getFieldType().getSize();
             cropRepository.reduceStockByFieldSize(cropID, fieldSize);
         }
