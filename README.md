@@ -18,10 +18,10 @@ Fieldtype - Each fieldtype will have a cost and size.
 Crop - The user can also purchase crops which have a price, stock and time for growth. Only 1 crop can be put into a field. When purchased, the stock of the crop is reduced by the size of the field it is put on.
 <br/>
 
-Soil - There are also preset soil types and soil effects which can be selected from an enum list that affect the growth time of the crops and therefore affect when they're ready to sell. They can also effect the price at which the crop is sold at.
+Soil - There are also preset soil types and soil effects which can be selected from an enum list that affect the growth time of the crops and therefore affect when they're ready to sell. They can also affect the price at which the crop is sold at.
 <br/>
 
-The user can move to the next day and the application will record this. If crops are ready to sell (growing time is reached) then the fields get automatically cleared and sold and the money is generated in the farm.
+The user can move to the next day on a given farm and the application will record this. If crops are ready to sell (growing time is reached) then the fields get automatically cleared and sold and the money is generated in the farm.
 
 
 
