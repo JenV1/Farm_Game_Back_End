@@ -71,7 +71,6 @@ public class FieldService {
     }
 
     public int sellReadyCropsInFields(Long farmID) {
-//        Integer moneyMade = fieldRepository.updateMoneyUponAutomaticSelling(farmID);
         Integer moneyMade = 0;
         if (fieldRepository.doubleYieldTotals(farmID) != null) {
             moneyMade = fieldRepository.doubleYieldTotals(farmID);
@@ -90,12 +89,6 @@ public class FieldService {
             int moneyOut = 0;
             return moneyOut;
         }
-    }
-
-    public void clearFieldManually(Long fieldID, Long farmID){
-
-
-
     }
 
 

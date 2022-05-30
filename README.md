@@ -9,19 +9,19 @@ Our application is a farm game where the user can play around with funtionality 
 Farm - The user can create and name a farm which will automatically have funds of £1000. Here they can fill it with fields.
 <br/>
 
-Field - Within the farm, the user can purchase many fields which must be given a name and a fieldtype. 
+Field - Within the farm, the user can purchase many fields which must be given a name and a fieldtype. If the fieldtype selected is already associated with a soil type, then the field is assigned that soil type, otherwise the field gets a soil type assigned randomly.
 <br/>
 
 Fieldtype - Each fieldtype will have a cost and size.
 <br/>
 
-Crop - The user can also purchase crops which has a price, stock and time for growth. Only 1 crop can be put into a field. When purchased, the stock of the crop is reduced by 1.
+Crop - The user can also purchase crops which have a price, stock and time for growth. Only 1 crop can be put into a field. When purchased, the stock of the crop is reduced by the size of the field it is put on.
 <br/>
 
-Soil - There are also preset soil types and soil effects which can be selected from an enum list that affect the growth time of the crops and therefore affect when they're ready to sell.
+Soil - There are also preset soil types and soil effects which can be selected from an enum list that affect the growth time of the crops and therefore affect when they're ready to sell. They can also affect the price at which the crop is sold at.
 <br/>
 
-The user can move to the next day and the application will record this. If crops are ready to sell (growing time is reached) then the fields get automatically cleared and sold and the money is generated in the farm.
+The user can move to the next day on a given farm and the application will record this. If crops are ready to sell (growing time is reached) then the fields get automatically cleared and sold and the money is generated in the farm.
 
 
 

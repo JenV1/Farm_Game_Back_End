@@ -39,6 +39,9 @@ public class FieldController {
         return ResponseEntity.ok().body(field);
     }
 
+    // the following is not altered to deal with a crop's soil types and the effect that might have on growth
+    // time
+
     @PostMapping("/fields")
     public void createField(@RequestParam String fieldName, @RequestParam int size,
                             @RequestParam int cost, @RequestParam SoilTypes soilType, @RequestParam Long farmID,
@@ -51,6 +54,7 @@ public class FieldController {
             fieldService.saveField(newField);
         }
     }
+    //////////
 
     @PatchMapping(value = "/CropInField")
     public void putCropInField(@RequestParam Long fieldID, @RequestParam Long cropID) {
@@ -59,12 +63,15 @@ public class FieldController {
         }
     }
 
+    // the following does not take into account the soil types and effects on crops
+
     @PatchMapping(value = "/automaticSelling/{farmID}")
     public int sellReadyCropsInFields(@PathVariable Long farmID) {
         int moneyMade = fieldService.sellReadyCropsInFields(farmID);
         farmService.updateMoneyWhenCropsSold(farmID, moneyMade);
         return moneyMade;
     }
+    ////////
 
     @DeleteMapping("/deleteField/{id}")
     public void deleteField(@PathVariable Long id){fieldService.deleteField(fieldService.getField(id));
