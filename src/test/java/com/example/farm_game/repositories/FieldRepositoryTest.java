@@ -13,11 +13,6 @@ class FieldRepositoryTest {
     FieldRepository fieldRepository;
 
     @Test
-    void updateMoneyUponAutomaticSelling() {
-        assertEquals(1130, fieldRepository.updateMoneyUponAutomaticSelling(4l));
-    }
-
-    @Test
     void testDoubleMoneyWorksOnRightSoilType() {
         assertEquals(140, fieldRepository.doubleYieldTotals(1l));
     }

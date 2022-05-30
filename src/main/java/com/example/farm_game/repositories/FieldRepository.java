@@ -66,17 +66,6 @@ public interface FieldRepository extends JpaRepository<Field,Long> {
     void assignCropToField(@Param("FIELD_ID") Long fieldID, @Param("CROP_ID") Long cropID,
                            @Param("NEW_TIME") int newTime);
 
-    @Query(value = "WITH MONEY_BACK_FROM_FIELD AS ( "
-            + "SELECT CROPS.SELLPRICE*FIELD_TYPES.SIZE AS MONEY "
-            + "FROM FIELDS INNER JOIN CROPS "
-            + "ON CROPS.ID = FIELDS.CROP_ID "
-            + "INNER JOIN FIELD_TYPES "
-            + "ON FIELDS.FIELD_ID = FIELD_TYPES.ID "
-            + "WHERE FIELDS.FARM_ID = :FARM_ID "
-            + "AND FIELDS.TIMELEFT = 0 AND FIELDS.CROP_ID IS NOT NULL) " +
-            "SELECT SUM(MONEY) FROM MONEY_BACK_FROM_FIELD", nativeQuery = true)
-    Integer updateMoneyUponAutomaticSelling(@Param("FARM_ID") Long farmID);
-
     @Modifying
     @Query(value = "UPDATE FIELDS SET CROP_ID = NULL WHERE FARM_ID = :FARM_ID AND TIMELEFT=0", nativeQuery = true)
     @Transactional
