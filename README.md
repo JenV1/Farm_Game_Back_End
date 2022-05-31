@@ -54,3 +54,18 @@ The user can view the relations between the objects using the h2 console. It can
 <br/>
 
 Here they can connect to the database and view the different tables generated from the application and use SELECT queries for filteration.
+
+## Request Examples for Postman
+
+Crops
+<br />
+
+| URL                     | Request Type  | Description                                                             |
+| -------------           | ------------- | ---------------------                                                   |
+| .../crops               | GET           | Gets all the crops                                                      |
+| .../crop/{id}           | GET           | Gets a specific crop by ID                                              |
+| .../meals               | POST          | Creates a new crop with whatever is passed into request body            |
+| .../deleteCrop/{id}     | DELETE        | Deletes a specific crop by ID                                           |
+| .../updateCrop/{id}     | UPDATE        | Updates a specific crop by ID with whatever is passed into request body |
+
+<br />
