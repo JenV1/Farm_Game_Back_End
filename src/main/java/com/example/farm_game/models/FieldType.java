@@ -29,7 +29,7 @@ public class FieldType {
     private SoilTypes soilType;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "fieldType")
+    @OneToMany(mappedBy = "fieldType", cascade = CascadeType.REMOVE)
     private List<Field> fields;
 
     public FieldType(Long id, String name, int size, int cost, SoilTypes soilType, List<Field> fields) {

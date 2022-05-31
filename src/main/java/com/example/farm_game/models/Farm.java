@@ -24,7 +24,7 @@ public class Farm {
     private int date;
 
     @JsonIgnoreProperties({"fields","farm"})
-    @OneToMany(mappedBy = "farm")
+    @OneToMany(mappedBy = "farm", cascade = CascadeType.REMOVE)
     private List<Field> ownFields;
 
     public Farm(Long id, String name, int funds, int date, List<Field> fields) {

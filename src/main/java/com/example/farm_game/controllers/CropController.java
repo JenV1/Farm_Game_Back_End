@@ -53,18 +53,23 @@ public class CropController {
     @Transactional
     public void updateCrop(@PathVariable Long id,
                            @RequestParam(required = false) String name,
-                           @RequestParam(required = false) int price,
-                           @RequestParam(required = false) int stock,
-                           @RequestParam(required = false) int growTime){
+                           @RequestParam(required = false) Integer price,
+                           @RequestParam(required = false) Integer stock,
+                           @RequestParam(required = false) Integer growTime){
         Crop crop = cropService.cropRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("A crop with ID " + id + " is not found. Please try again."));
-        if(name != null){
+        if (name != null) {
             crop.setName(name);
+        }
+        if (price != null) {
             crop.setPrice(price);
+        }
+        if (stock != null) {
             crop.setStock(stock);
+        }
+        if (growTime != null) {
             crop.setGrowTime(growTime);
         }
-
     }
 
 }

@@ -46,7 +46,7 @@ public class Crop {
     private int sellPrice;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "crop")
+    @OneToMany(mappedBy = "crop", cascade = CascadeType.REMOVE)
     private List<Field> fields;
 
 
