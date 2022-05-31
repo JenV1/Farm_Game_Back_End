@@ -83,3 +83,29 @@ Farms
 | .../newday/{id}                       | PUT           | Moves farm ID onto the next day including autoselling and incrementing crop times |
 
 <br />
+
+Field types
+<br />
+
+| URL                                   | Request Type  | Description                                                       |
+| -------------                         | ------------- | ---------------------                                             |
+| .../fieldtypes                        | GET           | Gets all the fieldtypes                                           |
+| .../fieldtype/{id}                    | GET           | Gets a specific fieldtype by ID                                   |
+| .../fieldtypes                        | POST          | Creates a new feildtype with whatever is passed into request body |
+| .../deleteFieldType/{id}              | DELETE        | Deletes a specific farm by ID                                     |
+
+<br />
+
+Fields
+<br />
+
+| URL                                              | Request Type  | Description                                                   |
+| -------------                                    | ------------- | ---------------------                                         |
+| .../fields                                       | GET           | Gets all the fields                                           |
+| .../field/{id}                                   | GET           | Gets a specific field by ID                                   |
+| .../fields                                       | POST          | Creates a new field with whatever is passed into request body |
+| .../deleteField/{id}                             | DELETE        | Deletes a specific field by ID                                |
+| .../automaticSelling/{farmid}                    | PATCH         | Sells all ready crops in all fields connected to farm id      |
+| .../CropInField?fieldID={idField}&cropID={idCrop}| PATCH         | Plants a crop idCrop in field idField                         |
+
+<br />
