@@ -64,8 +64,22 @@ Crops
 | -------------           | ------------- | ---------------------                                                   |
 | .../crops               | GET           | Gets all the crops                                                      |
 | .../crop/{id}           | GET           | Gets a specific crop by ID                                              |
-| .../meals               | POST          | Creates a new crop with whatever is passed into request body            |
+| .../crops               | POST          | Creates a new crop with whatever is passed into request body            |
 | .../deleteCrop/{id}     | DELETE        | Deletes a specific crop by ID                                           |
-| .../updateCrop/{id}     | UPDATE        | Updates a specific crop by ID with whatever is passed into request body |
+| .../updateCrop/{id}     | PUT           | Updates a specific crop by ID with whatever is passed into request body |
+
+<br />
+
+Farms
+<br />
+
+| URL                                   | Request Type  | Description                                                                       |
+| -------------                         | ------------- | ---------------------                                                             |
+| .../farms                             | GET           | Gets all the farms                                                                |
+| .../farm/{id}                         | GET           | Gets a specific farm by ID                                                        |
+| .../farms                             | POST          | Creates a new farm with a set name                                                |
+| .../deleteFarm/{id}                   | DELETE        | Deletes a specific farm by ID                                                     |
+| .../farm/{id}/buyfield/{idfieldtype}  | PUT           | Buys a new field for farm ID of field type IDFIELDTYPE                            |
+| .../newday/{id}                       | PUT           | Moves farm ID onto the next day including autoselling and incrementing crop times |
 
 <br />
