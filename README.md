@@ -54,3 +54,58 @@ The user can view the relations between the objects using the h2 console. It can
 <br/>
 
 Here they can connect to the database and view the different tables generated from the application and use SELECT queries for filteration.
+
+## Request Examples for Postman
+
+Crops
+<br />
+
+| URL                     | Request Type  | Description                                                             |
+| -------------           | ------------- | ---------------------                                                   |
+| .../crops               | GET           | Gets all the crops                                                      |
+| .../crop/{id}           | GET           | Gets a specific crop by ID                                              |
+| .../crops               | POST          | Creates a new crop with whatever is passed into request body            |
+| .../deleteCrop/{id}     | DELETE        | Deletes a specific crop by ID                                           |
+| .../updateCrop/{id}     | PUT           | Updates a specific crop by ID with whatever is passed into request body |
+
+<br />
+
+Farms
+<br />
+
+| URL                                   | Request Type  | Description                                                                       |
+| -------------                         | ------------- | ---------------------                                                             |
+| .../farms                             | GET           | Gets all the farms                                                                |
+| .../farm/{id}                         | GET           | Gets a specific farm by ID                                                        |
+| .../farms                             | POST          | Creates a new farm with a set name                                                |
+| .../deleteFarm/{id}                   | DELETE        | Deletes a specific farm by ID                                                     |
+| .../farm/{id}/buyfield/{idfieldtype}  | PUT           | Buys a new field for farm ID of field type IDFIELDTYPE                            |
+| .../newday/{id}                       | PUT           | Moves farm ID onto the next day including autoselling and incrementing crop times |
+
+<br />
+
+Field types
+<br />
+
+| URL                                   | Request Type  | Description                                                       |
+| -------------                         | ------------- | ---------------------                                             |
+| .../fieldtypes                        | GET           | Gets all the fieldtypes                                           |
+| .../fieldtype/{id}                    | GET           | Gets a specific fieldtype by ID                                   |
+| .../fieldtypes                        | POST          | Creates a new feildtype with whatever is passed into request body |
+| .../deleteFieldType/{id}              | DELETE        | Deletes a specific farm by ID                                     |
+
+<br />
+
+Fields
+<br />
+
+| URL                                              | Request Type  | Description                                                   |
+| -------------                                    | ------------- | ---------------------                                         |
+| .../fields                                       | GET           | Gets all the fields                                           |
+| .../field/{id}                                   | GET           | Gets a specific field by ID                                   |
+| .../fields                                       | POST          | Creates a new field with whatever is passed into request body |
+| .../deleteField/{id}                             | DELETE        | Deletes a specific field by ID                                |
+| .../automaticSelling/{farmid}                    | PATCH         | Sells all ready crops in all fields connected to farm id      |
+| .../CropInField?fieldID={idField}&cropID={idCrop}| PATCH         | Plants a crop idCrop in field idField                         |
+
+<br />
